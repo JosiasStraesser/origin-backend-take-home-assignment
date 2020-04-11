@@ -48,6 +48,81 @@ class RiskControllerTest {
     }
 
     @Test
+    fun `When receiving negative age, should not continue`() {
+        val requestJson = jsonComponent.jsonObject(
+                "request/risk/analysis-default.json"
+        ).put("age", -1)
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/risk/analysis")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestJson.toString()))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest)
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[0]").value("age: must be greater than or equal to 0"))
+    }
+
+    @Test
+    fun `When receiving negative dependents, should not continue`() {
+        val requestJson = jsonComponent.jsonObject(
+                "request/risk/analysis-default.json"
+        ).put("dependents", -1)
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/risk/analysis")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestJson.toString()))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest)
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[0]").value("dependents: must be greater than or equal to 0"))
+    }
+
+    @Test
+    fun `When receiving negative income, should not continue`() {
+        val requestJson = jsonComponent.jsonObject(
+                "request/risk/analysis-default.json"
+        ).put("income", -1)
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/risk/analysis")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestJson.toString()))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest)
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[0]").value("income: must be greater than or equal to 0"))
+    }
+
+    @Test
+    fun `When receiving more than 3 risk questions, should not continue`() {
+        val requestJson = jsonComponent.jsonObject(
+                "request/risk/analysis-default.json"
+        )
+        val riskQuestions = requestJson.getJSONArray("risk_questions").put( true)
+        requestJson.put("risk_questions", riskQuestions)
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/risk/analysis")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestJson.toString()))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest)
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[0]").value("riskQuestions: 3 risk questions must be informed"))
+    }
+
+    @Test
+    fun `When receiving less than 3 risk questions, should not continue`() {
+        val requestJson = jsonComponent.jsonObject(
+                "request/risk/analysis-default.json"
+        )
+        val riskQuestions = requestJson.getJSONArray("risk_questions")
+        riskQuestions.remove(0)
+        requestJson.put("risk_questions", riskQuestions)
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/risk/analysis")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestJson.toString()))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest)
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[0]").value("riskQuestions: 3 risk questions must be informed"))
+    }
+
+    @Test
     fun `When the user doesn't have income, should return ineligible for disability insurance`() {
         val requestJson = jsonComponent.jsonObject(
                 "request/risk/analysis-default.json"
@@ -88,7 +163,6 @@ class RiskControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk)
                 .andExpect(MockMvcResultMatchers.jsonPath("$.home").value("ineligible"))
     }
-
 
     @Test
     fun `When the user is over 60 years old, should return ineligible for disability and life insurance`() {

@@ -1,4 +1,4 @@
-package com.challenge.filters
+package com.challenge.configuration.filters
 
 import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.PropertyNamingStrategy

@@ -1,14 +1,28 @@
 package com.challenge.models
 
 import java.util.*
+import javax.validation.constraints.Min
+import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
 data class AnalysisData(
-        val age: Long,
-        val dependents: Long,
-        val house: HouseData?,
-        val income: Long,
+        @field:Min(0)
+        val age: Int,
+
+        @field:Min(0)
+        val dependents: Int,
+
+        @field:Min(0)
+        val income: Int,
+
         val maritalStatus: MaritalStatus,
-        val riskQuestions: List<Boolean>,//[0, 1, 0],
+
+        @field:Size(min = 3, max = 3, message = "3 risk questions must be informed")
+        val riskQuestions: List<Boolean>,
+
+        val house: HouseData?,
+
         val vehicle: VehicleData?
 ) {
     val scoreBase

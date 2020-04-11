@@ -8,13 +8,14 @@ import com.challenge.models.insurances.InsuranceService
 import com.challenge.models.AnalysisData
 import com.challenge.models.RiskResult
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/risk")
 class RiskController {
 
     @PostMapping("/analysis")
-    fun analysis(@RequestBody analysisData: AnalysisData): RiskResult {
+    fun analysis(@Valid @RequestBody analysisData: AnalysisData): RiskResult {
         return RiskResult(
                 auto = InsuranceService.checkElegibility(AutoInsurance, analysisData),
                 home = InsuranceService.checkElegibility(HomeInsurance, analysisData),
