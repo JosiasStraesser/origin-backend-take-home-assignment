@@ -13,10 +13,10 @@ object InsuranceService {
         return if (insurance.elegibilityRules.notAllAreSatisfiedBy(analysisData))
             InsurancePlan.Ineligible
         else
-            processPlan(insurance.riskCriterias, analysisData)
+            elect(insurance.riskCriterias, analysisData)
     }
 
-    private fun processPlan(criterias: List<RiskCriteria>, analysisData: AnalysisData): InsurancePlan {
+    private fun elect(criterias: List<RiskCriteria>, analysisData: AnalysisData): InsurancePlan {
         val riskPoints = analysisData.scoreBase + criterias.sumBy { criteria -> criteria.evaluate(analysisData) }
 
         return when {
