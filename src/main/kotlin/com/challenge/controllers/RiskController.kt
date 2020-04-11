@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.*
 class RiskController {
 
     @PostMapping("/analysis")
-    fun analysis(@RequestBody operationData: AnalysisData): RiskResult {
+    fun analysis(@RequestBody analysisData: AnalysisData): RiskResult {
         return RiskResult(
-                auto = InsuranceService.checkElegibility(AutoInsurance, operationData),
-                home = InsuranceService.checkElegibility(HomeInsurance, operationData),
-                disability = InsuranceService.checkElegibility(DisabilityInsurance, operationData),
-                life = InsuranceService.checkElegibility(LifeInsurance, operationData)
+                auto = InsuranceService.checkElegibility(AutoInsurance, analysisData),
+                home = InsuranceService.checkElegibility(HomeInsurance, analysisData),
+                disability = InsuranceService.checkElegibility(DisabilityInsurance, analysisData),
+                life = InsuranceService.checkElegibility(LifeInsurance, analysisData)
         )
     }
 }
