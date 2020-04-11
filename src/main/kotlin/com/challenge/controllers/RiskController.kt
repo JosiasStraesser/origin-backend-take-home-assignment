@@ -15,17 +15,12 @@ class RiskController {
 
     @PostMapping("/analysis")
     fun analysis(@RequestBody operationData: AnalysisData): RiskResult {
-        val result = RiskResult(
+        return RiskResult(
                 auto = InsuranceService.checkElegibility(AutoInsurance(), operationData),
                 home = InsuranceService.checkElegibility(HomeInsurance(), operationData),
                 disability = InsuranceService.checkElegibility(DisabilityInsurance(), operationData),
                 life = InsuranceService.checkElegibility(LifeInsurance(), operationData)
         )
-        return result
-    }
-
-    @GetMapping
-    fun analysis() {
     }
 }
 
