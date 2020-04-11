@@ -1,7 +1,7 @@
-package com.challenge.models.Rules
+package com.challenge.models.Specifications
 
 import com.challenge.models.AnalysisData
 
-object HasHouse : Rule {
+object HasHouse : Specification {
     override fun isSatisfiedBy(data: AnalysisData) = data.house != null
 }

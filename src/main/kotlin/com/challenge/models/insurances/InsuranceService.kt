@@ -8,7 +8,7 @@ object InsuranceService {
             insurance: Insurance,
             data: AnalysisData
     ): InsurancePlan {
-        return if (insurance.elegibilityRules.any { !it.isSatisfiedBy(data) })
+        return if (insurance.elegibilitySpecifications.any { !it.isSatisfiedBy(data) })
             InsurancePlan.Ineligible
         else
             processPlan(insurance.riskCriterias, data)

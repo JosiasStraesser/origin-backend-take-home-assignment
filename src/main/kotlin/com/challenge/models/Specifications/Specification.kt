@@ -1,7 +1,7 @@
-package com.challenge.models.Rules
+package com.challenge.models.Specifications
 
 import com.challenge.models.AnalysisData
 
-interface Rule {
+interface Specification {
     fun isSatisfiedBy(data: AnalysisData): Boolean
 }

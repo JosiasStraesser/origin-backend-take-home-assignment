@@ -1,7 +1,7 @@
-package com.challenge.models.Rules
+package com.challenge.models.Specifications
 
 import com.challenge.models.AnalysisData
 
-object IsUnder30YearsOld : Rule {
+object IsUnder30YearsOld : Specification {
     override fun isSatisfiedBy(data: AnalysisData) = data.age < 30
 }

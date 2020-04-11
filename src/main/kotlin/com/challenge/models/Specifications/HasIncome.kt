@@ -1,7 +1,7 @@
-package com.challenge.models.Rules
+package com.challenge.models.Specifications
 
 import com.challenge.models.AnalysisData
 
-object HasIncome : Rule {
+object HasIncome : Specification {
     override fun isSatisfiedBy(data: AnalysisData) = data.income > 0
 }
