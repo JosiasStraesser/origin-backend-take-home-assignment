@@ -16,10 +16,10 @@ class RiskController {
     @PostMapping("/analysis")
     fun analysis(@RequestBody operationData: AnalysisData): RiskResult {
         return RiskResult(
-                auto = InsuranceService.checkElegibility(AutoInsurance(), operationData),
-                home = InsuranceService.checkElegibility(HomeInsurance(), operationData),
-                disability = InsuranceService.checkElegibility(DisabilityInsurance(), operationData),
-                life = InsuranceService.checkElegibility(LifeInsurance(), operationData)
+                auto = InsuranceService.checkElegibility(AutoInsurance, operationData),
+                home = InsuranceService.checkElegibility(HomeInsurance, operationData),
+                disability = InsuranceService.checkElegibility(DisabilityInsurance, operationData),
+                life = InsuranceService.checkElegibility(LifeInsurance, operationData)
         )
     }
 }
