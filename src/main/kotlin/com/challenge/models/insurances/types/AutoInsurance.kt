@@ -1,8 +1,8 @@
-package challenge.controllers.insurance
+package com.challenge.models.insurances.types
 
-import challenge.controllers.Rules.*
-import challenge.models.RiskCriteria
-import com.challenge.models.insurances.types.Insurance
+import com.challenge.controllers.Rules.*
+import com.challenge.models.Rules.*
+import com.challenge.models.insurances.RiskCriteria
 
 class AutoInsurance(
         override val elegibilityRules: List<Rule> = listOf(HasVehicle),

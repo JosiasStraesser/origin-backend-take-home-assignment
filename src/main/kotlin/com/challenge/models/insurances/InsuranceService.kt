@@ -1,14 +1,12 @@
-package challenge.model.insurance
+package com.challenge.models.insurances
 
-import challenge.models.insurances.InsurancePlan
-import challenge.models.RiskCriteria
-import challenge.models.RiskData
+import com.challenge.models.AnalysisData
 import com.challenge.models.insurances.types.Insurance
 
 object InsuranceService {
     fun checkElegibility(
             insurance: Insurance,
-            data: RiskData
+            data: AnalysisData
     ): InsurancePlan {
         return if (insurance.elegibilityRules.any { !it.isSatisfiedBy(data) })
             InsurancePlan.Ineligible
@@ -16,7 +14,7 @@ object InsuranceService {
             processPlan(insurance.riskCriterias, data)
     }
 
-    private fun processPlan(criterias: List<RiskCriteria>, data: RiskData): InsurancePlan {
+    private fun processPlan(criterias: List<RiskCriteria>, data: AnalysisData): InsurancePlan {
         val riskPoints = data.scoreBase + criterias.sumBy { it.calculate(data) }
 
         return when {

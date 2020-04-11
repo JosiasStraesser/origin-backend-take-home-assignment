@@ -1,4 +1,4 @@
-package challenge.models.insurances
+package com.challenge.models.insurances
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

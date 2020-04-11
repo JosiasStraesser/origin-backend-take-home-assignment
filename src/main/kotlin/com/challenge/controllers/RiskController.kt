@@ -1,12 +1,12 @@
 package com.challenge.controllers
 
-import challenge.controllers.insurance.AutoInsurance
-import challenge.controllers.insurance.DisabilityInsurance
-import challenge.controllers.insurance.HomeInsurance
-import challenge.controllers.insurance.LifeInsurance
-import challenge.model.insurance.InsuranceService
-import challenge.models.RiskData
-import challenge.models.RiskResult
+import com.challenge.models.insurances.types.AutoInsurance
+import com.challenge.models.insurances.types.DisabilityInsurance
+import com.challenge.models.insurances.types.HomeInsurance
+import com.challenge.models.insurances.types.LifeInsurance
+import com.challenge.models.insurances.InsuranceService
+import com.challenge.models.AnalysisData
+import com.challenge.models.RiskResult
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.*
 class RiskController {
 
     @PostMapping("/analysis")
-    fun analysis(@RequestBody riskData: RiskData): RiskResult {
+    fun analysis(@RequestBody operationData: AnalysisData): RiskResult {
         val result = RiskResult(
-                auto = InsuranceService.checkElegibility(AutoInsurance(), riskData),
-                home = InsuranceService.checkElegibility(HomeInsurance(), riskData),
-                disability = InsuranceService.checkElegibility(DisabilityInsurance(), riskData),
-                life = InsuranceService.checkElegibility(LifeInsurance(), riskData)
+                auto = InsuranceService.checkElegibility(AutoInsurance(), operationData),
+                home = InsuranceService.checkElegibility(HomeInsurance(), operationData),
+                disability = InsuranceService.checkElegibility(DisabilityInsurance(), operationData),
+                life = InsuranceService.checkElegibility(LifeInsurance(), operationData)
         )
         return result
     }

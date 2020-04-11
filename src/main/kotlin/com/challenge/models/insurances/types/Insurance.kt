@@ -1,8 +1,7 @@
 package com.challenge.models.insurances.types
 
-import challenge.controllers.Rules.HasHouse
-import challenge.controllers.Rules.Rule
-import challenge.models.RiskCriteria
+import com.challenge.models.Rules.Rule
+import com.challenge.models.insurances.RiskCriteria
 
 interface Insurance {
     val elegibilityRules: List<Rule>

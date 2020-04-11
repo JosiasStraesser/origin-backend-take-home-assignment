@@ -1,8 +1,8 @@
-package challenge.models
+package com.challenge.models
 
 import java.util.*
 
-data class RiskData(
+data class AnalysisData(
         val age: Long,
         val dependents: Long,
         val house: HouseData?,

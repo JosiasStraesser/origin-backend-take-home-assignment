@@ -1,10 +1,10 @@
-package challenge.models
+package com.challenge.models
 
-import challenge.models.insurances.InsurancePlan
+import com.challenge.models.insurances.InsurancePlan
 
 data class RiskResult(
-    val auto: InsurancePlan,
-    val disability: InsurancePlan,
-    val home: InsurancePlan,
-    val life: InsurancePlan
+        val auto: InsurancePlan,
+        val disability: InsurancePlan,
+        val home: InsurancePlan,
+        val life: InsurancePlan
 )
