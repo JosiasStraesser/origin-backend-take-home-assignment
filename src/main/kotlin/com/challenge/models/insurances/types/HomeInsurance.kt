@@ -1,6 +1,6 @@
 package com.challenge.models.insurances.types
 
-import com.challenge.models.Specifications.*
+import com.challenge.models.specifications.*
 import com.challenge.models.insurances.RiskCriteria
 
 object HomeInsurance : Insurance {

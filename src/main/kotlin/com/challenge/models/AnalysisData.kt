@@ -23,8 +23,7 @@ data class AnalysisData(
 
         val vehicle: VehicleData?
 ) {
-    val scoreBase
-        get() = riskQuestions.count { riskQuestionResult -> riskQuestionResult.equals(true) }
+    val scoreBase = riskQuestions.count { riskQuestionResult -> riskQuestionResult.equals(true) }
 
     enum class MaritalStatus { Single, Married }
 

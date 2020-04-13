@@ -1,4 +1,4 @@
-package com.challenge.models.Specifications
+package com.challenge.models.specifications
 
 import com.challenge.models.AnalysisData
 
