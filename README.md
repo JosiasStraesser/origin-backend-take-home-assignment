@@ -78,9 +78,9 @@ It is not necessary to build the screens a user would interact with, however, as
 ## The Solution
 I created services that isolate the responsibility to calculate the risk points and return the insurance profile, according to the sum of points.
 
-I created Objects that represent each type of insurance, responsible for concentrating their eligibility rules and risk assessment.
+To represent each type of insurance, I created objects, responsible for concentrating their eligibility rules and risk points assessment.
 
-I used the concept of Strategies to represent the risk and eligibility characteristics, configuring them in each type of insurance individually. I used this strategy because I understand that, with the evolution of the system, some rules can be changed and the individual configuration of each rule would facilitate this scenario.
+The concept of Strategies was used to represent the risk and eligibility characteristics, configuring them in each type of insurance individually. I used this strategy because I understand that, with the evolution of the system, some rules can be changed and the individual configuration of each rule would facilitate this scenario.
 
 I also created integration tests to guarantee the scenarios for each characteristic / type of insurance described in the challenge.
 
