@@ -2,6 +2,7 @@ package com.challenge.configuration.exception
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -28,6 +29,21 @@ class ExceptionHandler() {
                 request.httpMethod.toString(),
                 HttpStatus.BAD_REQUEST.toString(),
                 errorsList
+        )
+        return ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST)
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException::class)
+    fun messageNotReadable(ex: HttpMessageNotReadableException, request: ServletWebRequest):
+            ResponseEntity<ExceptionResponse> {
+
+        val exceptionResponse = ExceptionResponse(
+                Date(),
+                "Validation failed",
+                request.getDescription(false),
+                request.httpMethod.toString(),
+                HttpStatus.BAD_REQUEST.toString(),
+                listOf(ex.message!!)
         )
         return ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST)
     }

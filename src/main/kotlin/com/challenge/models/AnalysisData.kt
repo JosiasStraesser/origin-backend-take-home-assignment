@@ -2,8 +2,6 @@ package com.challenge.models
 
 import java.util.*
 import javax.validation.constraints.Min
-import javax.validation.constraints.NotBlank
-import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 data class AnalysisData(
@@ -28,10 +26,10 @@ data class AnalysisData(
     val scoreBase
         get() = riskQuestions.count { riskQuestionResult -> riskQuestionResult.equals(true) }
 
-    enum class MaritalStatus { single, married }
+    enum class MaritalStatus { Single, Married }
 
     class HouseData(val ownershipStatus: OwnershipStatus) {
-        enum class OwnershipStatus { owned, mortgaged }
+        enum class OwnershipStatus { Owned, Mortgaged }
     }
 
     class VehicleData(val year: Long) {

@@ -1,23 +1,22 @@
 package com.challenge.models.insurances
 
 import com.challenge.models.AnalysisData
-import com.challenge.models.Specifications.Specification
 import com.challenge.models.insurances.types.Insurance
 
 object InsuranceService {
-    fun checkElegibility(
+    fun checkEligibility(
             insurance: Insurance,
             analysisData: AnalysisData
     ): InsurancePlan {
 
-        return if (insurance.elegibilityRules.notAllAreSatisfiedBy(analysisData))
+        return if (insurance.isNotEligibleBy(analysisData))
             InsurancePlan.Ineligible
         else
-            elect(insurance.riskCriterias, analysisData)
+            elect(insurance.riskCriteria, analysisData)
     }
 
-    private fun elect(criterias: List<RiskCriteria>, analysisData: AnalysisData): InsurancePlan {
-        val riskPoints = analysisData.scoreBase + criterias.sumBy { criteria -> criteria.evaluate(analysisData) }
+    private fun elect(criteria: List<RiskCriteria>, analysisData: AnalysisData): InsurancePlan {
+        val riskPoints = analysisData.scoreBase + criteria.sumBy { criteria -> criteria.evaluate(analysisData) }
 
         return when {
             riskPoints <= 0 -> InsurancePlan.Economic
@@ -26,6 +25,5 @@ object InsuranceService {
         }
     }
 
-    private fun List<Specification>.notAllAreSatisfiedBy(analysisData: AnalysisData) =
-            this.any { specification -> !specification.isSatisfiedBy(analysisData) }
+
 }
