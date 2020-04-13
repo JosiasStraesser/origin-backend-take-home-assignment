@@ -74,3 +74,22 @@ You may use any language and framework, provided that you build a solid system w
 This assignment should be doable in less than one day. We expect you to learn fast, **communicate with us**, and make decisions regarding its implementation & scope to achieve the expected results on time.
 
 It is not necessary to build the screens a user would interact with, however, as the API is intended to power a user-facing application, we expect the implementation to be as close as possible to what would be necessary in real-life.
+
+# Solution
+I created services that isolate the responsibility to calculate the risk points and return the insurance profile, according to the sum of points.
+
+I created Objects that represent each type of insurance, responsible for concentrating their eligibility rules and risk assessment.
+
+I used the concept of Strategies to represent the risk and eligibility characteristics, configuring them in each type of insurance individually. I used this strategy because I understand that, with the evolution of the system, some rules can be changed and the individual configuration of each rule would facilitate this scenario.
+
+I also created integration tests to guarantee the scenarios for each characteristic / type of insurance described in the challenge.
+
+## Comments:
+ - I adopted the use of objects instead of classes in the strategies and types of insurance, because the kotlin allows objects to receive interface implementation, thus not hindering the inversion of control in an evolution of the API.
+
+ - I created only integration tests as a quick way to guarantee the scenarios described in the challenge. A next step would be to use unit tests.
+
+ - In order to avoid overengineering, I did not create layers of isolation between different contexts in the initial solution. This approach would be advisable in an evolution of the structure.
+
+ - I didn't want to worry about the deserialization strategy, so I used JSon Properties in the return enums, in order to respect the return in the lower case.
+ 
